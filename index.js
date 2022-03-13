@@ -27,6 +27,11 @@ const run = async () => {
   const db = mongoose.connect(process.env.MONGODB_URL, () => {
     console.log("Connected to DB!");
   });
+
+  // AdminJs
+  const { adminJs, adminJsRouter } = require("./admin/adminJS");
+  app.use(adminJs.options.rootPath, adminJsRouter);
+
   // Listening
   app.listen(port, () => {
     console.log(`Listening on port: ${port}`);
